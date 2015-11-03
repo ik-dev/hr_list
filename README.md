@@ -1,1 +1,1 @@
-Solution for linked-list challenges found on HackerRank
+Solution for challenges found on HackerRank
