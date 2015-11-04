@@ -7,6 +7,15 @@ typedef struct _node
     struct _node* next;
 }node;
 
+// Insert a nodet at the head of a linked list
+node* beginning(node* head, int data)
+{
+    node* n = (node *) malloc(sizeof(node));
+    n->data = data;
+    n->next = head;
+    return n;
+}
+
 // Insert a node at the tail of a linked list
 node* tail(node* head, int data)
 {
@@ -42,9 +51,9 @@ int main()
 {
     node *head = NULL;
 
-    head = tail(head, 1);
-    head = tail(head, 2);
-    head = tail(head, 3);
+    head = beginning(head, 1);
+    head = beginning(head, 2);
+    head = beginning(head, 3);
 
     display(head);
 }
