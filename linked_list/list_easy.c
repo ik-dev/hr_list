@@ -70,25 +70,51 @@ node* insert_at_pos(node* head, int data, int pos)
     return head;
 }
 
+// Delete a node at a given position in a linked list
+node* delete(node *head, int pos)
+{
+    if (head == NULL)
+    {
+        return head;
+    }
+    else if (pos == 0)
+    {
+        head = head->next;
+        return head;
+    }
+    else
+    {
+        int i = 1;
+        node *curr = head;
+        while (curr != NULL)
+        {
+            if (i == pos)
+            {
+                curr->next = curr->next->next;
+                return head;
+            }
+            i++;
+            curr = curr->next;
+        }
+    }
+}
+
 // Print the elements of a linked list
 void display(node *head)
 {
-    while(head != NULL)
-    {
+    for (;head != NULL; head = head->next)
         printf("%d\n", head->data);
-        head = head->next;
-    }
 }
 
 int main()
 {
     node *head = NULL;
 
-    head = insert_at_pos(head, 1, 0);
-    head = insert_at_pos(head, 2, 1);
-    head = insert_at_pos(head, 3, 2);
-    head = insert_at_pos(head, 4, 1);
-    head = insert_at_pos(head, 5, 1);
+    head = insert_at_tail(head, 1);
+    head = insert_at_tail(head, 2);
+    head = insert_at_tail(head, 3);
+    head = insert_at_tail(head, 4);
+    head = insert_at_tail(head, 5);
 
     display(head);
 }
