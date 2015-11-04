@@ -100,10 +100,19 @@ node* delete(node *head, int pos)
 }
 
 // Print the elements of a linked list
-void display(node *head)
+void print(node *head)
 {
     for (;head != NULL; head = head->next)
         printf("%d\n", head->data);
+}
+
+// Print the elements of a linked list in reverse order
+void reverse_print(node *head)
+{
+    if (head == NULL)
+        return;
+    reverse_print(head->next);
+    printf("%d\n", head->data);
 }
 
 int main()
@@ -116,5 +125,5 @@ int main()
     head = insert_at_tail(head, 4);
     head = insert_at_tail(head, 5);
 
-    display(head);
+    reverse_print(head);
 }
