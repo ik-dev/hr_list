@@ -99,6 +99,21 @@ node* delete(node *head, int pos)
     }
 }
 
+// Reverse a linked list
+node* reverse(node* head)
+{
+    node *prev, *next;
+    prev = NULL;
+    while (head != NULL)
+    {
+        next = head->next;
+        head->next = prev;
+        prev = head;
+        head = next;
+    }
+    return prev;
+}
+
 // Print the elements of a linked list
 void print(node *head)
 {
@@ -125,5 +140,6 @@ int main()
     head = insert_at_tail(head, 4);
     head = insert_at_tail(head, 5);
 
-    reverse_print(head);
+    head = reverse(head);
+    print(head);
 }
