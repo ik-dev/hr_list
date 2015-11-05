@@ -130,9 +130,50 @@ void reverse_print(node *head)
     printf("%d\n", head->data);
 }
 
+// Deep copies a linked list
+node* deep_copy(node *head)
+{
+    node *new_head = NULL;
+    node *new_tail = NULL;
+    while (head != NULL)
+    {
+        if(new_head == NULL)
+        {
+            new_head = create_node(head->data);
+            new_tail = new_head;
+        }
+        else
+        {
+            new_tail->next = create_node(head->data);
+            new_tail = new_tail->next;
+        }
+        head = head->next;
+    }
+    return new_head;
+}
+
+// Compares two linked list
+int compare(node *head1, node *head2)
+{
+    int result = 1;
+    while (head1 != NULL && head2 != NULL)
+    {
+        if (head1->data != head2->data)
+        {
+            result = 0;
+            break;
+        }
+        head1 = head1->next;
+        head2 = head2->next;
+    }
+    if (result && (head1 != NULL || head2 != NULL))
+        result = 0;
+    return result;
+}
+
 int main()
 {
-    node *head = NULL;
+    node *head = NULL, *another;
 
     head = insert_at_tail(head, 1);
     head = insert_at_tail(head, 2);
@@ -140,6 +181,7 @@ int main()
     head = insert_at_tail(head, 4);
     head = insert_at_tail(head, 5);
 
-    head = reverse(head);
-    print(head);
+    another = deep_copy(head);
+    // another = insert_at_tail(another, 6);
+    printf("result: %d\n", compare(head, another));
 }
